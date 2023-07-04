@@ -27,11 +27,6 @@ def generate_cover_letter(job_description, complete_times, temp = 0.5, resume = 
 
     Here is the draft cover letter for him which shows him has a free spirited and experienced journalist who became a self-thaught coder 
     
-    Chat gpt will prepare him a striking letter for him will be prepared. So that he will be free of Turkey which is a risky place for him as he wants to do real journalism uncovering unseen truths.
-     
-    What is the proof of this? Here is the project which he was inspired from his current job as the Trial Observer in Amnesty International Turkey Section:
-    {bitze} 
-    
     Here is the draft cover letter which will make him get the job above and will set him free: """
     print(f'Input prompt:\n{prompt}')
     response = openai.Completion.create(
