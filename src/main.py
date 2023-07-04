@@ -33,6 +33,7 @@ def generate_cover_letter(job_description, complete_times, temp = 0.5, resume = 
     {bitze} 
     
     Here is the draft cover letter which will make him get the job above and will set him free: """
+    print(f'Input prompt:\n{prompt}')
     response = openai.Completion.create(
         engine='davinci',
         prompt=prompt,
@@ -59,7 +60,8 @@ def write_to_file(obj):
         f.write(text)
 def get_personal_info_from_file():
     with open('constants/personal.info', 'r') as personal:
-        name, address = [x for x in personal.readlines() if x.strip]
+        taken_from_file = [x for x in personal.readlines() if x.strip()]
+        name, address = taken_from_file
     with open('constants/skills.json', 'r') as skills:
         text = skills.read()
         skills = json.loads(text)
