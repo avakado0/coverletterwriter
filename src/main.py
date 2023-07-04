@@ -10,7 +10,7 @@ with open(path) as f:
     
 openai.api_key = key
 
-def generate_cover_letter(job_description, complete_times, temp = 0.5, resume = False, max_tokens = 300):
+def generate_cover_letter(job_description, complete_times, temp = 0.5, resume = False, max_tokens = 2000):
     if resume:
         with open("inputs/resume.txt") as f:
             resume = f.load()    
@@ -44,9 +44,11 @@ def generate_cover_letter(job_description, complete_times, temp = 0.5, resume = 
         max_tokens=max_tokens,
     )
     responses = dict(response)
-    responses['response_prompt_text'] = response.text
-    responses = json.dumps(responses)
+    print(f'Raw response: \n{responses}')
     write_to_file(responses)    
+    #responses['response_prompt_text'] = response.text
+    responses = json.dumps(responses)
+    
     # Replace placeholders with user-specific information
     #cover_letter_draft = cover_letter_draft.replace("{{NAME}}", name)
     #cover_letter_draft = cover_letter_draft.replace("{{ADDRESS}}", address)
@@ -56,7 +58,7 @@ def generate_cover_letter(job_description, complete_times, temp = 0.5, resume = 
 
 def write_to_file(obj):
     with open('outputs/output.json', 'w') as f:
-        text = json.dumps(obj)
+        text = json.dumps(obj, indent=4)
         f.write(text)
 def get_personal_info_from_file():
     with open('constants/personal.info', 'r') as personal:
